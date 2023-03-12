@@ -76,6 +76,27 @@ function App() {
     startNewRound();
   }, [cardId, startNewRound]);
 
+  useEffect(() => {
+    const downHandler = (event: KeyboardEvent) => {
+      const { code } = event;
+      console.log(code)
+      if (code === "KeyR") {
+        startNewRound();
+      }
+      if (code === "Enter") {
+        startNewRound();
+      }
+      if (code === "Space") {
+        startNewRound();
+      }
+    };
+
+    window.addEventListener("keydown", downHandler);
+    return () => {
+      window.removeEventListener("keydown", downHandler);
+    };
+  }, [startNewRound]);
+
   return (
     <div className="App">
       <div className='settings-pane'>
