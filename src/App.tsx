@@ -33,7 +33,7 @@ function App() {
   return (
     <div className="App">
       <div>{state.pos}</div>
-      <Flashcard frontText={LearningCards[state.pos]?.character} backText={LearningCards[state.pos]?.jyutping} />
+      <Flashcard nodeId={LearningCards[state.pos].nodeId} frontText={LearningCards[state.pos]?.character} backText={LearningCards[state.pos]?.jyutping} />
       <button onClick={()=>dispatch("prev")}>Prev</button>
       <button onClick={()=>dispatch("next")}>next</button>
     </div>
