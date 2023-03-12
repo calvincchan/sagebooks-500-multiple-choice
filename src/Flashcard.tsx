@@ -1,11 +1,12 @@
 import { useState } from 'react';
+import { CardVariant } from './App';
 import './Flashcard.css';
 
-function Flashcard(props: {frontText: string, backText?: string, cardId: number}) {
-  const {frontText = "Front", backText = "Back", cardId: nodeId = 0} = props;
+function Flashcard(props: {frontText: string, backText?: string, cardId: number, variant: CardVariant, onClick?: any}) {
+  const {frontText = "Front", backText = "Back", cardId: nodeId = 0, variant = "default", onClick} = props;
   const [isFront, setIsFront] = useState(true);
   return (
-    <div className="flashcard">
+    <div className={["flashcard", variant].join(" ")} onClick={onClick}>
       <div className={`flashcard-inner ${isFront?"":"flipped"}`}>
         <div className="flashcard-front">
           <button className="control" onClick={()=>{setIsFront(false)}}>flip</button>

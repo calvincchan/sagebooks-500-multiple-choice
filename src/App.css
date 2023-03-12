@@ -1,9 +1,22 @@
-.App .settings-pane {
-  margin: 1rem;
+html,
+body {
+  height: 100%;
+}
+
+#root {
+  margin: 0;
+  height: 100%;
+  background-color: bisque;
+}
+
+.App .confetti {
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: flex-end;
+  justify-content: center;
+}
+
+.App .settings-pane {
+  padding: 3rem;
+  text-align: center;
 }
 
 .App .cards-pane {
@@ -16,7 +29,7 @@
   justify-content: center;
 }
 
-.App .answer-pane {
-  margin-top: 5rem;
+.App .control-pane {
+  padding-top: 3rem;
   text-align: center;
 }

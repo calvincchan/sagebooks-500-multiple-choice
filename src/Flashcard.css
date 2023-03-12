@@ -42,6 +42,16 @@
   font-family: "Kaiti TC";
 }
 
+.flashcard.correct .flashcard-inner .flashcard-front {
+  background-color: green;
+  color: white;
+}
+
+.flashcard.incorrect .flashcard-inner .flashcard-front {
+  background-color: red;
+  color: white;
+}
+
 .flashcard .flashcard-inner .flashcard-back {
   background-color: gray;
   color: white;
