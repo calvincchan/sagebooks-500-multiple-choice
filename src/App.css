@@ -1,13 +1,22 @@
-#root {
-  height: 100vh;
-}
-
-.App {
-  text-align: center;
-  margin-top: 20vh;
+.App .settings-pane {
+  margin: 1rem;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5em;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.App .cards-pane {
+  margin: 1rem;
+  text-align: center;
+  margin-top: 10vh;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
   justify-content: center;
-  align-items: center;
+}
+
+.App .answer-pane {
+  margin-top: 5rem;
+  text-align: center;
 }

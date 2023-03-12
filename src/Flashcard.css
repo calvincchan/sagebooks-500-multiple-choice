@@ -1,8 +1,9 @@
 .flashcard {
-  display: inline-block;
-  width: 400px;
-  height: 300px;
+  display: block;
+  width: 14rem;
+  height: 40vh;
   perspective: 1000px;
+  cursor: pointer;
 }
 
 .flashcard .flashcard-inner {
@@ -41,17 +42,19 @@
   font-family: "Kaiti TC";
 }
 
-.flashcard .flashcard-inner .flashcard-front .id-tag {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  font-size: 2rem;
-}
-
 .flashcard .flashcard-inner .flashcard-back {
   background-color: gray;
   color: white;
   transform: rotateY(180deg);
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 2rem;
+}
+
+.flashcard .flashcard-inner .flashcard-back .id-tag {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 2rem;
 }
 
 .flashcard .flashcard-inner .control {
