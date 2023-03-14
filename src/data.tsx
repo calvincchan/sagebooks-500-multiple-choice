@@ -60,5 +60,15 @@ export const LearningCards: LearningCard[] = [
   {cardId: 48, character: "飛", jyutping: "fei1"},
   {cardId: 49, character: "看", jyutping: "hon3"},
   {cardId: 50, character: "裏", jyutping: "leoi5"},
-];
 
+  {cardId: 51, character: "起", jyutping: "hei2"},
+  {cardId: 52, character: "要", jyutping: "jiu3"},
+  {cardId: 53, character: "男", jyutping: "naam4"},
+  {cardId: 54, character: "明", jyutping: "ming4"},
+  {cardId: 55, character: "兔", jyutping: "tou3"},
+  {cardId: 56, character: "白", jyutping: "baak6"},
+  {cardId: 57, character: "書", jyutping: "syu1"},
+  {cardId: 58, character: "本", jyutping: "bun2"},
+  {cardId: 59, character: "會", jyutping: "wui6/wui2/wui5"},
+  {cardId: 60, character: "吃", jyutping: "hek3"},
+];
