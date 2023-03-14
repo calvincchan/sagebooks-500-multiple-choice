@@ -3,10 +3,16 @@ body {
   height: 100%;
 }
 
+button {
+  font-size: 1rem;
+  margin: 0 0.2rem;
+}
+
 #root {
   margin: 0;
   height: 100%;
   background-color: bisque;
+  overflow-y: scroll;
 }
 
 .App .confetti {
@@ -15,14 +21,13 @@ body {
 }
 
 .App .settings-pane {
-  padding: 3rem;
+  margin-top: 2rem;
   text-align: center;
 }
 
 .App .cards-pane {
-  margin: 1rem;
+  margin-top: 1rem;
   text-align: center;
-  margin-top: 10vh;
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
@@ -30,6 +35,6 @@ body {
 }
 
 .App .control-pane {
-  padding-top: 3rem;
+  margin-top: 1rem;
   text-align: center;
 }

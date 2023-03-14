@@ -5,7 +5,7 @@ import './App.css';
 import { LearningCards } from './data';
 import Flashcard from './Flashcard';
 
-const NUMBER_OF_CARDS_TO_DEAL = 5;
+const NUMBER_OF_CARDS_TO_DEAL = 4;
 
 export type CardVariant = "default" | "correct" | "incorrect";
 
@@ -18,6 +18,7 @@ function App() {
   const [cardId, setCardId] = useState(0);
   const [cards, setCards] = useState<CardSlot[]>([])
   const [isExploding, setIsExploding] = useState(false);
+  const [isCorrect, setIsCorrect] = useState(false);
 
   const showSetDialog = () => {
     const len = LearningCards.length;
@@ -40,6 +41,7 @@ function App() {
     const slots: CardSlot[] = cardIds.map(n => {return {cardId: n, variant: "default"}});
     setCards(shuffleArray(slots));
     setIsExploding(false);
+    setIsCorrect(false);
   }, [cardId])
 
   function shuffleArray(arr: any[]): any[] {
@@ -59,12 +61,12 @@ function App() {
   const checkAnswer = (index: number) => {
     const selectedSlot = cards[index];
     const answer = cardId;
-    console.log({answer, index, selectedSlot})
     if (selectedSlot.cardId === answer) {
       setCards(update(cards, {
         [index]: { $merge: {variant: "correct" }}
       }));
-      setIsExploding(!isExploding);
+      setIsExploding(true);
+      setIsCorrect(true);
     } else {
       setCards(update(cards, {
         [index]: { $merge: {variant: "incorrect" }}
@@ -76,31 +78,23 @@ function App() {
     startNewRound();
   }, [cardId, startNewRound]);
 
+  /** Auto start new round on correct answer. */
   useEffect(() => {
-    const downHandler = (event: KeyboardEvent) => {
-      const { code } = event;
-      console.log(code)
-      if (code === "KeyR") {
+    let timer: NodeJS.Timeout;
+    if (isCorrect) {
+      timer = setTimeout(() => {
         startNewRound();
-      }
-      if (code === "Enter") {
-        startNewRound();
-      }
-      if (code === "Space") {
-        startNewRound();
-      }
-    };
-
-    window.addEventListener("keydown", downHandler);
+      }, 2000);
+    }
     return () => {
-      window.removeEventListener("keydown", downHandler);
-    };
-  }, [startNewRound]);
+      clearTimeout(timer);
+    }
+  }, [cardId, isCorrect, startNewRound])
 
   return (
     <div className="App">
       <div className='settings-pane'>
-        <button onClick={showSetDialog}>Set Card ({cardId+1})</button>
+      <button onClick={showSetDialog}>Set Card ({cardId+1})</button>
         <button onClick={()=>{moveTo(cardId-1)}}>Previous</button>
         <button onClick={()=>{moveTo(cardId+1)}}>Next</button>
       </div>
@@ -110,7 +104,7 @@ function App() {
       <div className='cards-pane'>
         {cards.map((slot, index) => (
           <Flashcard key={slot.cardId} variant={slot.variant} cardId={LearningCards[slot.cardId].cardId} frontText={LearningCards[slot.cardId]?.character} backText={LearningCards[slot.cardId]?.jyutping} onClick={()=>{checkAnswer(index)}} />
-        ))};
+        ))}
       </div>
       <div className='control-pane'>
         <button onClick={()=>{startNewRound()}}>Restart Game</button>
