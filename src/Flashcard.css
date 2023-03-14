@@ -1,7 +1,7 @@
 .flashcard {
   display: block;
-  width: 14rem;
-  height: 40vh;
+  width: 40vw;
+  height: 30vh;
   perspective: 1000px;
   cursor: pointer;
 }
@@ -57,14 +57,14 @@
   color: white;
   transform: rotateY(180deg);
   font-family: Georgia, 'Times New Roman', Times, serif;
-  font-size: 2rem;
+  font-size: 1.4em;
 }
 
 .flashcard .flashcard-inner .flashcard-back .id-tag {
   position: absolute;
-  top: 20px;
-  left: 20px;
-  font-size: 2rem;
+  top: 1rem;
+  left: 1rem;
+  font-size: 1rem;
 }
 
 .flashcard .flashcard-inner .control {

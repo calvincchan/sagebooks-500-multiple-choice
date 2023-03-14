@@ -10,7 +10,7 @@ function Flashcard(props: {frontText: string, backText?: string, cardId: number,
       <div className={`flashcard-inner ${isFront?"":"flipped"}`}>
         <div className="flashcard-front">
           <button className="control" onClick={()=>{setIsFront(false)}}>flip</button>
-          <h1>{frontText}</h1>
+          <div>{frontText}</div>
         </div>
         <div className="flashcard-back">
           <button className="control" onClick={()=>{setIsFront(true)}}>close</button>
