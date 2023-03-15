@@ -2,6 +2,10 @@
 
 This is a simple game that helps user memorize Chinese characters, by first hearing the sound in Cantonese and then pick the correct character out of 4 choices.
 
+<p align="center">
+  <img src="./screen-1.png">
+</p>
+
 Credits:
 - Chinese University of Hong Kong: pronouciation audio files (https://humanum.arts.cuhk.edu.hk/Lexis/lexi-can/)
 - Cantonese for Families https://cantoneseforfamilies.com/
