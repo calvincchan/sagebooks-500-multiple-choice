@@ -6,77 +6,98 @@ import { LearningCards } from './data';
 import Flashcard from './Flashcard';
 
 const NUMBER_OF_CARDS_TO_DEAL = 4;
+const INIT_CARD_ID = 0;
 
 export type CardVariant = "default" | "correct" | "incorrect";
 
 export interface CardSlot {
   cardId: number;
-  variant: CardVariant
+  variant: CardVariant;
+}
+
+/** Play audio */
+const audio = new Audio();
+const playSound = (id: number) => {
+  const phonic = LearningCards[id].jyutping ?? "";
+  const url = `https://humanum.arts.cuhk.edu.hk/Lexis/lexi-can/sound/${phonic}.wav`;
+  audio.src = url;
+  audio.play();
+}
+
+/** Shuffle items in an array. */
+const shuffleArray = (arr: any[]): any[] => {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
 }
 
 function App() {
-  const [cardId, setCardId] = useState(0);
-  const [cards, setCards] = useState<CardSlot[]>([])
-  const [isExploding, setIsExploding] = useState(false);
+  const [cardId, setCardId] = useState(() => INIT_CARD_ID);
+  const [slots, setSlots] = useState<CardSlot[]>([]);
   const [isCorrect, setIsCorrect] = useState(false);
+  const [round, setRound] = useState(0);
 
-  const showSetDialog = () => {
+
+  function showSetDialog() {
     const len = LearningCards.length;
     const str = prompt(`Please enter node ID (1-${len+1})`, String(cardId + 1));
     const val = parseInt(str!);
     if (val > 1 && val <= len) {
       setCardId(val - 1);
-    }
-  }
-
-  const startNewRound = useCallback(() => {
-    const length = LearningCards.length;
-    const cardIds: number[] = [cardId];
-    while (cardIds.length < NUMBER_OF_CARDS_TO_DEAL) {
-      var num = Math.floor(Math.random() * length);
-      if (num !== cardId && !cardIds.includes(num)) {
-        cardIds.push(num);
-      }
-    }
-    const slots: CardSlot[] = cardIds.map(n => {return {cardId: n, variant: "default"}});
-    setCards(shuffleArray(slots));
-    setIsExploding(false);
-    setIsCorrect(false);
-  }, [cardId])
-
-  function shuffleArray(arr: any[]): any[] {
-    for (let i = arr.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-    return arr;
-  }
-
-  const moveTo = (newValue: number) => {
-    if (newValue >= 0 && newValue < LearningCards.length) {
-      setCardId(newValue);
-    }
-  }
-
-  const checkAnswer = (index: number) => {
-    const selectedSlot = cards[index];
-    const answer = cardId;
-    if (selectedSlot.cardId === answer) {
-      setCards(update(cards, {
-        [index]: { $merge: {variant: "correct" }}
-      }));
-      setIsExploding(true);
-      setIsCorrect(true);
-    } else {
-      setCards(update(cards, {
-        [index]: { $merge: {variant: "incorrect" }}
-      }));
+      setRound(x => x + 1);
+      playSound(val - 1);
     }
   }
 
   useEffect(() => {
-    startNewRound();
-  }, [cardId, startNewRound]);
+    function shuffleSlots(id: number) {
+      const length = LearningCards.length;
+      const picked: number[] = [id];
+      while (picked.length < NUMBER_OF_CARDS_TO_DEAL) {
+        var num = Math.floor(Math.random() * length);
+        if (num !== id && !picked.includes(num)) {
+          picked.push(num);
+        }
+      }
+      const slots: CardSlot[] = picked.map(n => { return { cardId: n, variant: "default" }; });
+      return shuffleArray(slots);
+    }
+
+    if (round > 0) {
+      setSlots(shuffleSlots(cardId));
+    }
+  }, [cardId, round]);
+
+  const startNewRound = useCallback(() => {
+    setRound(x => x + 1);
+    setIsCorrect(false);
+    playSound(cardId);
+  }, [cardId]);
+
+
+  function moveTo(value: number) {
+    if (value >= 0 && value < LearningCards.length) {
+      setCardId(value);
+      playSound(value);
+    }
+  }
+
+  function checkAnswer(selected: number) {
+    const selectedSlot = slots[selected];
+    const answer = cardId;
+    if (selectedSlot.cardId === answer) {
+      setSlots(update(slots, {
+        [selected]: { $merge: { variant: "correct" } }
+      }));
+      setIsCorrect(true);
+    } else {
+      setSlots(update(slots, {
+        [selected]: { $merge: { variant: "incorrect" } }
+      }));
+    }
+  }
 
   /** Auto start new round on correct answer. */
   useEffect(() => {
@@ -84,30 +105,36 @@ function App() {
     if (isCorrect) {
       timer = setTimeout(() => {
         startNewRound();
-      }, 2000);
+      }, 1600);
     }
     return () => {
       clearTimeout(timer);
     }
-  }, [cardId, isCorrect, startNewRound])
+  }, [cardId, isCorrect, startNewRound]);
 
   return (
     <div className="App">
+      {/* <audio ref={audio} src=""></audio> */}
       <div className='settings-pane'>
-      <button onClick={showSetDialog}>Set Card ({cardId+1})</button>
-        <button onClick={()=>{moveTo(cardId-1)}}>Previous</button>
-        <button onClick={()=>{moveTo(cardId+1)}}>Next</button>
+      <button onClick={()=>{showSetDialog()}}>Set Card ({cardId+1})</button>
+      {round > 0 &&
+        <>
+          <button onClick={()=>{moveTo(cardId-1)}}>Previous</button>
+          <button onClick={()=>{moveTo(cardId+1)}}>Next</button>
+        </>
+      }
       </div>
       <div className='confetti'>
-        {isExploding && <ConfettiExplosion height="150vh" />}
+        {isCorrect && <ConfettiExplosion height="150vh" />}
       </div>
       <div className='cards-pane'>
-        {cards.map((slot, index) => (
+        {slots.map((slot, index) => (
           <Flashcard key={slot.cardId} variant={slot.variant} cardId={LearningCards[slot.cardId].cardId} frontText={LearningCards[slot.cardId]?.character} backText={LearningCards[slot.cardId]?.jyutping} onClick={()=>{checkAnswer(index)}} />
         ))}
       </div>
       <div className='control-pane'>
         <button onClick={()=>{startNewRound()}}>Restart Game</button>
+        {round > 0 && <button onClick={()=>{playSound(cardId)}}>Play Sound</button>}
       </div>
     </div>
   );
