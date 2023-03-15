@@ -1,3 +1,16 @@
+# Sagebooks 500 Chinese Characters 基礎漢字500 - Multiple Choice Game (Cantonese/Traditional Chinese)
+
+This is a simple game that helps user memorize Chinese characters, by first hearing the sound in Cantonese and then pick the correct character out of 4 choices.
+
+Credits:
+- Chinese University of Hong Kong: pronouciation audio files (https://humanum.arts.cuhk.edu.hk/Lexis/lexi-can/)
+- Cantonese for Families https://cantoneseforfamilies.com/
+- dependencies: `react-confetti-explosion`, `immutability-helper`
+
+## Quick Run:
+
+https://codesandbox.io/p/github/calvincchan/sagebooks-500-multiple-choice/master
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
