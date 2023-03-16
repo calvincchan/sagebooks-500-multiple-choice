@@ -1,10 +1,20 @@
-import { useState } from 'react';
 import { CardVariant } from './App';
 import './Flashcard.css';
 
-function Flashcard(props: {frontText: string, backText?: string, cardId: number, variant: CardVariant, onClick?: any}) {
-  const {frontText = "Front", backText = "Back", cardId: nodeId = 0, variant = "default", onClick} = props;
-  const [isFront, setIsFront] = useState(true);
+interface FlashCardProps {
+  frontText: string,
+  backText?: string,
+  cardId: number,
+  isFront: boolean;
+  variant: CardVariant,
+  onClick?: any
+}
+
+const Flashcard = (props: FlashCardProps) => {
+  let {frontText = "Front", backText = "Back", cardId: nodeId = 0, isFront = true, variant = "default", onClick} = props;
+  const setIsFront = (val: boolean) => {
+    isFront = val;
+  }
   return (
     <div className={["flashcard", variant].join(" ")} onClick={onClick}>
       <div className={`flashcard-inner ${isFront?"":"flipped"}`}>
@@ -20,6 +30,6 @@ function Flashcard(props: {frontText: string, backText?: string, cardId: number,
       </div>
     </div>
   );
-}
+};
 
 export default Flashcard;

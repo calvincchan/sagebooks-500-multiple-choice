@@ -11,9 +11,12 @@ Credits:
 - Cantonese for Families https://cantoneseforfamilies.com/
 - dependencies: `react-confetti-explosion`, `immutability-helper`
 
-## Quick Run:
+## Demo
 
-https://codesandbox.io/p/github/calvincchan/sagebooks-500-multiple-choice/master
+Open https://1iol3t-3000.csb.app/
+
+Or [See the source code in CodeSandbox](https://codesandbox.io/p/github/calvincchan/sagebooks-500-multiple-choice/master)
+
 
 # Getting Started with Create React App
 

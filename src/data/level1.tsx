@@ -1,11 +1,6 @@
-export interface LearningCard {
-  cardId: number;
-  /** Chinese character */
-  character: string;
-  jyutping: string;
-};
+import { LearningCard } from ".";
 
-export const LearningCards: LearningCard[] = [
+export const Level1Cards: LearningCard[] = [
   {cardId: 1, character: "山", jyutping: "saan1"},
   {cardId: 2, character: "高", jyutping: "gou1"},
   {cardId: 3, character: "的", jyutping: "dik1"},
@@ -71,4 +66,48 @@ export const LearningCards: LearningCard[] = [
   {cardId: 58, character: "本", jyutping: "bun2"},
   {cardId: 59, character: "會", jyutping: "wui6/wui2/wui5"},
   {cardId: 60, character: "吃", jyutping: "hek3"},
+
+  {cardId: 61, character: "和", jyutping: "wo4"},
+  {cardId: 62, character: "水", jyutping: "seoi2"},
+  {cardId: 63, character: "幾", jyutping: "gei2"},
+  {cardId: 64, character: "沒", jyutping: "mut6"},
+  {cardId: 65, character: "走", jyutping: "zau2"},
+  {cardId: 66, character: "都", jyutping: "dou1"},
+  {cardId: 67, character: "出", jyutping: "ceot1"},
+  {cardId: 68, character: "回", jyutping: "wui4"},
+  {cardId: 69, character: "了", jyutping: "liu5"},
+  {cardId: 70, character: "太", jyutping: "taai3"},
+
+  {cardId: 71, character: "他", jyutping: "taa1"},
+  {cardId: 72, character: "嗎", jyutping: "maa3"},
+  {cardId: 73, character: "長", jyutping: "coeng4/zoeng2"},
+  {cardId: 74, character: "愛", jyutping: "oi3"},
+  {cardId: 75, character: "喝", jyutping: "hot3"},
+  {cardId: 76, character: "可", jyutping: "ho2"},
+  {cardId: 77, character: "想", jyutping: "soeng2"},
+  {cardId: 78, character: "見", jyutping: "gin3"},
+  {cardId: 79, character: "給", jyutping: "kap1"},
+  {cardId: 80, character: "玩", jyutping: "waan2/wun6"},
+
+  {cardId: 81, character: "就", jyutping: "zau6"},
+  {cardId: 82, character: "把", jyutping: "baa2"},
+  {cardId: 83, character: "樹", jyutping: "syu6"},
+  {cardId: 84, character: "頭", jyutping: "tau4"},
+  {cardId: 85, character: "耳", jyutping: "ji5"},
+  {cardId: 86, character: "快", jyutping: "faai"},
+  {cardId: 87, character: "得", jyutping: "dak1"},
+  {cardId: 88, character: "子", jyutping: "zi2"},
+  {cardId: 89, character: "多", jyutping: "do1"},
+  {cardId: 90, character: "又", jyutping: "jau6"},
+
+  {cardId: 91, character: "妹", jyutping: "mui6"},
+  {cardId: 92, character: "雨", jyutping: "jyu5"},
+  {cardId: 93, character: "誰", jyutping: "seoi4"},
+  {cardId: 94, character: "門", jyutping: "mun4"},
+  {cardId: 95, character: "貓", jyutping: "maau1"},
+  {cardId: 96, character: "開", jyutping: "hoi1"},
+  {cardId: 97, character: "老", jyutping: "lou5"},
+  {cardId: 98, character: "紅", jyutping: "hung4"},
+  {cardId: 99, character: "邊", jyutping: "bin1"},
+  {cardId: 100, character: "那",jyutping: "naa5"},
 ];
