@@ -44,18 +44,6 @@ function App() {
   const [round, setRound] = useState(0);
   const [pickerVisible, setPickerVisible] = useState(false);
 
-
-  function showSetDialog() {
-    const len = cardPool.length;
-    const str = prompt(`Please enter node ID (1-${len+1})`, String(cardId + 1));
-    const val = parseInt(str!);
-    if (val > 1 && val <= len) {
-      setCardId(val - 1);
-      setRound(x => x + 1);
-      playSound(val - 1);
-    }
-  }
-
   function selectCard(str: string) {
     const val = parseInt(str!);
     console.log("selectCard", val)
