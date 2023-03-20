@@ -8,6 +8,7 @@ This is a simple game that helps user memorize Chinese characters, by first hear
 
 Credits:
 - Chinese University of Hong Kong: pronouciation audio files (https://humanum.arts.cuhk.edu.hk/Lexis/lexi-can/)
+- Chinese Character Learning Program by Sagebooks (https://www.sagebookshk.com/programs/basic-chinese-500/)
 - Cantonese for Families https://cantoneseforfamilies.com/
 - dependencies: `react-confetti-explosion`, `immutability-helper`
 
