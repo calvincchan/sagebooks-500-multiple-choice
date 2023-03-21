@@ -46,7 +46,6 @@ function App() {
 
   function selectCard(str: string) {
     const val = parseInt(str!);
-    console.log("selectCard", val)
     if (val >= 1 && val <= cardPool.length) {
       setCardId(val - 1);
       playSound(val - 1);
@@ -84,10 +83,13 @@ function App() {
   function moveTo(value: number) {
     if (value >= 0 && value < cardPool.length) {
       setCardId(value);
+      setRound(x => x + 1);
+      setIsCorrect(false);
       playSound(value);
     }
   }
 
+  /** Check if the answer is correct or not, and update visual style. */
   function checkAnswer(selected: number) {
     const selectedSlot = slots[selected];
     const answer = cardId;
