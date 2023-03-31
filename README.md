@@ -11,6 +11,7 @@ Credits:
 - Chinese Character Learning Program by Sagebooks (https://www.sagebookshk.com/programs/basic-chinese-500/)
 - Cantonese for Families https://cantoneseforfamilies.com/
 - dependencies: `react-confetti-explosion`, `immutability-helper`
+- inspired by [Maomi Stars](https://apps.apple.com/hk/app/maomi-stars-kids-chinese-game/id1524729048)
 
 ## Demo
 
