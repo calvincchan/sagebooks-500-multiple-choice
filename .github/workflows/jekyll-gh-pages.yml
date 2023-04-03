@@ -26,13 +26,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy React to GitHub Pages
-        uses: bitovi/github-actions-react-to-ghp@v1.2.0
-        with:
-          # Specifies the command to run after npm ci for the build
-          build_command: yarn build
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: 'Build'
+        shell: bash
+        run: |
+          echo "::group::Build"
+          yarn install --frozen-lockfile
+          ${{ inputs.build_command }}
+          echo "::endgroup::"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
+        with: 
+          path: dist
 
   # Deployment job
   deploy:
