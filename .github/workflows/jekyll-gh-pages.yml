@@ -33,7 +33,7 @@ jobs:
         run: |
           echo "::group::Build"
           yarn install --frozen-lockfile
-          ${{ inputs.build_command }}
+          yarn build
           echo "::endgroup::"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
